@@ -1,30 +1,34 @@
-# AI Models Integration
+import requests
 
-# This script contains the integration for AI models: Deepseek and Qwen.
+class DeepseekAI:
+    BASE_URL = 'https://api.deepseek.ai/v1/'
 
-class Deepseek:
-    def __init__(self):
-        # Initialize Deepseek model
-        pass
+    def __init__(self, api_key):
+        self.api_key = api_key
 
-    def predict(self, input_data):
-        # Prediction logic for Deepseek
-        return "Predicted output from Deepseek"
+    def _handle_response(self, response):
+        if response.status_code != 200:
+            raise Exception(f'Error: {response.status_code} - {response.text}')
+        return response.json()
 
-class Qwen:
-    def __init__(self):
-        # Initialize Qwen model
-        pass
+    def call_model(self, data):
+        headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
+        response = requests.post(self.BASE_URL + 'model', json=data, headers=headers)
+        return self._handle_response(response)
 
-    def predict(self, input_data):
-        # Prediction logic for Qwen
-        return "Predicted output from Qwen"
 
-# Example Usage
-if __name__ == '__main__':
-    deepseek_model = Deepseek()
-    qwen_model = Qwen()
-    input_data = "example input"
+class QwenAI:
+    BASE_URL = 'https://api.qwen.ai/v1/'
 
-    print(deepseek_model.predict(input_data))
-    print(qwen_model.predict(input_data))
+    def __init__(self, api_key):
+        self.api_key = api_key
+
+    def _handle_response(self, response):
+        if response.status_code != 200:
+            raise Exception(f'Error: {response.status_code} - {response.text}')
+        return response.json()
+
+    def call_model(self, data):
+        headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
+        response = requests.post(self.BASE_URL + 'model', json=data, headers=headers)
+        return self._handle_response(response)
