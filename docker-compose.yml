@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  go-cqhttp:
+    image: 
+    container_name: go-cqhttp
+    environment:
+      - CQHTTP_WS_PORT=5700
+      - CQHTTP_HTTP_PORT=5701
+    volumes:
+      - ./data:/data
+      - ./config:/etc/go-cqhttp
+    ports:
+      - "5700:5700"
+      - "5701:5701"
+    restart: always
