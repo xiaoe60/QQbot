@@ -1,0 +1,7 @@
+# Python Dependencies for QQ AI Robot
+
+# Add your dependencies below:
+# e.g.,
+# requests
+# numpy
+# tensorflow
